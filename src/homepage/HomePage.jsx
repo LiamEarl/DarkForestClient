@@ -12,8 +12,8 @@ import LoggedOut from '../assets/websiteAssets/LoggedOut.png';
 import LoggedIn from '../assets/websiteAssets/LoggedIn.png';
 import LogInMenu from "./auth_forms/LogInMenu";
 import RegisterMenu from "./auth_forms/RegisterMenu";
-import CreateGameMenu from "./create_game/CreateGameMenu";
-import JoinGameMenu from "./join_game/JoinGameMenu";
+import CreateGameMenu from "./game_forms/CreateGameMenu";
+import JoinGameMenu from "./game_forms/JoinGameMenu";
 
 function HomePage() {
     const {user, setUser} = useUser();

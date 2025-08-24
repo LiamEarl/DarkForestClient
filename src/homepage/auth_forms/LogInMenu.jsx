@@ -66,6 +66,7 @@ function LogInMenu({ isOpen, onClose, onLogin, onRegister}) {
                     onClick={() => {
                         setUsername("");
                         setPassword("");
+                        setError("");
                         onClose();
                         onRegister();
                     }}>

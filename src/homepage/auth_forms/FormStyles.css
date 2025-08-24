@@ -12,16 +12,18 @@
 }
 .authform form {
     font-family: "Orbitron";
-    background-color: rgb(0, 98, 255);
+    background: linear-gradient(35deg, #b60a0a, #000000);
     padding: 2rem;
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    border: 2px solid rgb(0, 0, 0);
+    gap: 2vh;
+    border: none;
 }
 .authform h1 {
-    color: rgb(255, 255, 255);
+    color: #ffffff;
+    text-shadow: 
+        0 0 4px #ffffff;
     font-family: "Orbitron";
     text-align: center;
     padding: 0;
@@ -30,8 +32,7 @@
 }
 .authform form input {
     color: rgb(255, 255, 255);
-    background-color: rgb(0, 31, 0);
-    
+    background-color: rgb(0, 0, 0);
     font-family: "Orbitron";
     text-align: center;
     padding: 0;
@@ -43,7 +44,9 @@
     color: rgb(212, 193, 193);
 }
 .authform form label {
-    color: rgb(255, 255, 255);
+    color: #ff0000;
+    text-shadow: 
+        0 0 3px #ff0000;
     font-family: "Orbitron";
     text-align: center;
     padding: 0;
@@ -51,12 +54,21 @@
     font-size: 1.2rem;
     text-align: center;
 }
+.authform .error {
+    text-align: center;
+}
 .authform button {
-    font-size: 1rem;
-    color: rgb(255, 255, 255);
-    background-color: rgb(1, 137, 1);
+    font-size: 1.4rem;
+    color: #ffffff;
+    text-shadow: 
+        0 0 3px #ffffff;
+    background-color: transparent;
     font-family: "Orbitron";
+    border: none;
     text-align: center;
     padding: 0;
     margin: 0;
+}
+.authform button:hover {
+    transform:scale(1.05);
 }

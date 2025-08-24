@@ -1,12 +1,14 @@
-# React + Vite
+# Dark Forest Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an online strategy game that takes inspiration from Stellaris and Liu Cixin's Three Body Problem series. Users may create an account, then create or join a lobby and enter a galactic conquest simulation with their friends/foes.
 
-Currently, two official plugins are available:
+Players spawn randomly spread across a procedurally generated galaxy. In order to achieve their ambitions of conquest they must first make a move. Players will select an option and under each time interval every player's move will be executed simultaneously server side, then reflected on the client side. Whoever conquers the whole galaxy wins!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Play the game to find out the rest :)
 
-## Expanding the ESLint configuration
+# Dark Forest Backend
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+I used the Java Spring Boot framework with IntelliJ to build the application server, and I have a database that stores the secure user info.
+
+The backend is closed source as I don't want to expose code that involves user authentication to the public.
+

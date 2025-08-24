@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./JoinGameMenu.css";
+import "./GameFormStyle.css";
 import { useWebSocket } from "../../contexts/WebSocketContext";
 import WebSocketWrapper from "../../WebSocket";
 function JoinGameMenu({isOpen, onClose}) {
@@ -20,7 +20,6 @@ function JoinGameMenu({isOpen, onClose}) {
             ws.send(`/app/joinGame/${gameCode}`, null);
         });
         setWebSocket(ws);
-        
     }
 
     const handleChange = (e) => {
@@ -32,7 +31,7 @@ function JoinGameMenu({isOpen, onClose}) {
     if(!isOpen) return null;
 
     return (
-        <div className="joingame">
+        <div className="gameform">
             
             <div className="gamemenu">
                 <h1>Join Game</h1>

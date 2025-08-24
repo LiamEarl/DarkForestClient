@@ -36,7 +36,7 @@ function RegisterMenu({ isOpen, onClose, onRegister, onLogin}) {
 
                 <h1>Register</h1>
 
-                {error && <p style={{ color: "red" }}>{error}</p>}
+                {error && <p className="autherror" style={{ color: "red" }}>{error}</p>}
 
                 <input
                     type="text"

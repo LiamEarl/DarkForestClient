@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./CreateGameMenu.css";
+import "./GameFormStyle.css";
 import { useWebSocket } from "../../contexts/WebSocketContext";
 import WebSocketWrapper from "../../WebSocket";
 import { useUser } from "../../contexts/UserContext";
@@ -48,7 +48,7 @@ function CreateGameMenu({isOpen, onClose}) {
     if(!isOpen) return null;
 
     return (
-        <div className="creategame">
+        <div className="gameform">
             <div className="gamemenu">
                 <div className="code">
                     <h1>GameCode:</h1>
@@ -68,7 +68,9 @@ function CreateGameMenu({isOpen, onClose}) {
                 }
                 onClose();
             }}>Exit</button>
-            
+            <button onClick={() => {
+                onClose();
+            }}>Start</button>
             </div>
         </div>
     );
