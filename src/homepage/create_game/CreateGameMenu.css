@@ -4,7 +4,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.387);
     display: flex;
     justify-content: center;
     align-items:center;
@@ -12,18 +12,73 @@
 }
 .creategame .gamemenu {
     width: 30vw;
+    padding: 1rem;
+    min-width: fit-content;
     height: 60vh;
     display: flex;
-    background-color: white;
+    background: linear-gradient(35deg, #b60a0a, #000000);
     border-radius: 1.5vw;
-    border: 2px solid black;
     flex-direction: column;
     align-items: center;
 }
-.creategame .gamemenu button {
-    font-size: 1rem;
-    font-family: "Orbitron";
-    padding: 0.5rem 0;
+.creategame .gamemenu .code {
+    padding: 0;
     margin: 0;
-    width: 70%;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    display: flex;
+}
+.creategame h1 {
+    padding: 0;
+    margin: 0;
+    color: #ffffff;
+    text-shadow: 
+        0 0 6px #ffffff;
+    font-size: 2.3rem;
+    font-family: "Orbitron";
+}
+.creategame ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+.creategame li {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 
+        0 0 6px #ffffff;
+    font-size: 2rem;
+    font-family: "Orbitron";
+}
+.creategame .gamemenu button {
+    color: #ffffff;
+    text-shadow: 
+        0 0 6px #ffffff;
+    font-size: 3rem;
+    font-family: "Orbitron";
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    margin: 0;
+    transition: 0.3s;
+}
+.creategame .gamemenu button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    color: rgb(255, 0, 0);
+    text-shadow: 
+        0 0 6px rgb(255, 0, 0);
+}
+#gamecode {
+    margin: 0;
+    padding: 0;
+    font-family: "Orbitron";
+    font-size: 2rem;
+    color: rgb(255, 0, 0);
+    text-shadow: 
+        0 0 6px rgb(255, 0, 0);
 }

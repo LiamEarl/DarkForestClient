@@ -9,7 +9,7 @@ function LogInMenu({ isOpen, onClose, onLogin, onRegister}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("https://localhost:8443/api/users/login", {
+            const response = await fetch("https://localhost:8888/api/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),
@@ -61,7 +61,7 @@ function LogInMenu({ isOpen, onClose, onLogin, onRegister}) {
                     }}>
                     Cancel
                 </button>
-                <label>Don't haven an account?</label>
+                <label>Don't have an account?</label>
                 <button type="button" 
                     onClick={() => {
                         setUsername("");

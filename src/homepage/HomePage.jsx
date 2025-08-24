@@ -1,6 +1,6 @@
 import "./HomePage.css";
 import { useState, useEffect } from 'react';
-import { useUser } from "../UserContext";
+import { useUser } from "../contexts/UserContext";
 import Menu1 from '../assets/websiteAssets/Menu1.jpg';
 import Menu2 from '../assets/websiteAssets/Menu2.jpg';
 import Menu3 from '../assets/websiteAssets/Menu3.jpg';
@@ -13,10 +13,11 @@ import LoggedIn from '../assets/websiteAssets/LoggedIn.png';
 import LogInMenu from "./auth_forms/LogInMenu";
 import RegisterMenu from "./auth_forms/RegisterMenu";
 import CreateGameMenu from "./create_game/CreateGameMenu";
+import JoinGameMenu from "./join_game/JoinGameMenu";
 
 function HomePage() {
     const {user, setUser} = useUser();
-
+    
     const menuImages = [Menu1, Menu2, Menu3, Menu4, Menu5, Menu6, Menu7];
     const comments = [
         "The best thing since sliced bread!",
@@ -40,10 +41,12 @@ function HomePage() {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
     const [showCreateGame, setShowCreateGame] = useState(false);
+    const [showJoinGame, setShowJoinGame] = useState(false);
+    const [displayedName, setDisplayedName] = useState("");
 
     const getLoggedInStatus = async (e) => {
         try {
-            const response = await fetch("https://localhost:8443/api/users/findme", {
+            const response = await fetch("https://localhost:8888/api/users/findme", {
                 method: "GET",
                 credentials: "include"
             });
@@ -61,7 +64,7 @@ function HomePage() {
             const username = user.username;
             const id = user.id;
 
-            const response = await fetch("https://localhost:8443/api/users/logout", {
+            const response = await fetch("https://localhost:8888/api/users/logout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, id }),
@@ -82,13 +85,22 @@ function HomePage() {
         }
     };
 
+    const hideAllWindows = () => {
+        setShowCreateGame(false);
+        setShowRegister(false);
+        setShowLogin(false);
+        setShowJoinGame(false);
+    }
+
     useEffect(() => {
         if (!user) {
             setAccountStatus("Logged Out");
             setAccountButtonName("Log In");
+            setDisplayedName("");
         } else {
-            setAccountStatus("Logged In, ".concat(user.username));
+            setAccountStatus("Logged In, ");
             setAccountButtonName("Log Out");
+            setDisplayedName(user.username);
         }
     }, [user]);  
 
@@ -98,15 +110,10 @@ function HomePage() {
         setComment(comments[Math.floor(Math.random() * comments.length)]);
         setLocation(locations[Math.floor(Math.random() * locations.length)]);
     }, []);
-    
+
     return (
-        <div className='homepage' style={{
-            width: '100vw',
-            height: '100vh',
-            backgroundImage: `url(${bgImg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-        }}>
+        <>
+        <div className='homepage' >
             <div className="header">
                 <h1 id="title">Dark Forest</h1>
                 <p id="comment">{comment}</p>
@@ -116,13 +123,31 @@ function HomePage() {
             <div className="mainmenu"> 
 
                 <div className="account">
-                    <p id="accountstatus">{accountStatus}</p>
+                    <p id="accountstatus">{accountStatus}<span className="displayedname">{displayedName}</span></p>
                     <button onClick={handleAccountToggle}>{accountButtonName}</button>
                 </div>
 
-                <button onClick={() => {setShowCreateGame(!showCreateGame)}}>Create Game</button>
+                <button className="gamecreation" onClick={() => {
+                    if(!user) {
+                        setShowLogin(true);
+                        return;
+                    }
+                    setShowCreateGame(!showCreateGame);
+                }}>Create Game</button>
 
-                <LogInMenu
+                <button className="gamecreation" onClick={() => {
+                    if(!user) {
+                        setShowLogin(true);
+                        return;
+                    }
+                    setShowJoinGame(!showJoinGame);
+                }}>Join Game</button>
+
+                
+            </div>
+        </div>
+        
+        <LogInMenu
                     isOpen = {showLogin}
                     onClose = {() => setShowLogin(false)}
                     onLogin = {(data) => {
@@ -130,32 +155,31 @@ function HomePage() {
                     }}
                     onRegister={
                         () => {
-                            setShowLogin(false);
+                            hideAllWindows();
                             setShowRegister(true);
                         }
                     }
                 />
-                
-                <RegisterMenu
-                    isOpen = {showRegister}
-                    onClose = {() => setShowRegister(false)}
-                    onRegister = {() => setShowLogin(true)}
-                    onLogin = {
-                        () => {
-                            setShowLogin(true);
-                            setShowRegister(false);
-                        }
-                    }
-                />
-
-                <CreateGameMenu
-                    isOpen = {showCreateGame}
-                    onClose = {() => setShowCreateGame(false)}
-                />
-
-                
-            </div>
-        </div>
+        <RegisterMenu
+            isOpen = {showRegister}
+            onClose = {() => setShowRegister(false)}
+            onRegister = {() => setShowLogin(true)}
+            onLogin = {
+                () => {
+                    hideAllWindows();
+                    setShowLogin(true);
+                }
+            }
+        />
+        <CreateGameMenu
+            isOpen = {showCreateGame}
+            onClose = {() => setShowCreateGame(false)}
+        />
+        <JoinGameMenu
+            isOpen = {showJoinGame}
+            onClose = {() => setShowJoinGame(false)}
+        />
+        </>
     );
 }
 export default HomePage;

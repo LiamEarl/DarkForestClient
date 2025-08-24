@@ -9,13 +9,14 @@ function RegisterMenu({ isOpen, onClose, onRegister, onLogin}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("https://localhost:8443/api/users/register", {
+            const response = await fetch("https://localhost:8888/api/users/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),
                 credentials: "include"
             });
-            if(!response.ok) throw new Error(response.body);
+            
+            if(!response.ok) throw new Error("Failed. Username Was Probably In Use");
             onRegister();
             setUsername("");
             setPassword("");
@@ -40,6 +41,7 @@ function RegisterMenu({ isOpen, onClose, onRegister, onLogin}) {
                 <input
                     type="text"
                     placeholder="Username"
+                    maxLength={14}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
@@ -49,6 +51,7 @@ function RegisterMenu({ isOpen, onClose, onRegister, onLogin}) {
                     type="password"
                     placeholder="Password"
                     value={password}
+                    maxLength={20}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />

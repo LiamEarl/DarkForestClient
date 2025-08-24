@@ -1,12 +1,15 @@
 import './App.css'
 import HomePage from './homepage/HomePage'
-import { UserProvider } from './UserContext'
+import { UserProvider } from './contexts/UserContext'
+import { WebSocketProvider } from './contexts/WebSocketContext'
 
 function App() {
   return (
     <>
       <UserProvider>
-        <HomePage/>
+        <WebSocketProvider>
+          <HomePage/>
+        </WebSocketProvider>
       </UserProvider>
     </>
   )
