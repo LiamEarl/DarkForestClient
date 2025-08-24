@@ -1,0 +1,56 @@
+.authform {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    z-index: 1000;
+}
+.authform form {
+    font-family: "Orbitron";
+    background-color: rgb(255, 255, 255);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 2px solid rgb(0, 0, 0);
+}
+.authform h1 {
+    color: rgb(0, 0, 0);
+    font-family: "Orbitron";
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1vh;
+}
+.authform form input {
+    color: rgb(0, 0, 0);
+    font-family: "Orbitron";
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    text-align: center;
+}
+.authform form label {
+    color: rgb(0, 0, 0);
+    font-family: "Orbitron";
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.authform button {
+    font-size: 1rem;
+    color: rgb(0, 0, 0);
+    font-family: "Orbitron";
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
