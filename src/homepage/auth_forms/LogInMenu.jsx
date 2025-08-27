@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AppServerDetails from "~/assets/AppServerDetails.json" with { type: 'json' };
 import "./FormStyles.css";
 function LogInMenu({ isOpen, onClose, onLogin, onRegister}) {
 
@@ -9,7 +10,7 @@ function LogInMenu({ isOpen, onClose, onLogin, onRegister}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("https://localhost:8888/api/users/login", {
+            const response = await fetch(AppServerDetails.https_url.concat("/api/users/login"), {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),

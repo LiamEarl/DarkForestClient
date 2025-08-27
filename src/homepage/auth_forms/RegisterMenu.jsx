@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AppServerDetails from "~/assets/AppServerDetails.json" with { type: 'json' };
 
 function RegisterMenu({ isOpen, onClose, onRegister, onLogin}) {
 
@@ -9,7 +10,7 @@ function RegisterMenu({ isOpen, onClose, onRegister, onLogin}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("https://localhost:8888/api/users/register", {
+            const response = await fetch(AppServerDetails.https_url.concat("/api/users/register"), {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),

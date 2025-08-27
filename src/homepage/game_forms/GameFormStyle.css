@@ -1,3 +1,4 @@
+@import '../../index.css';
 .gameform {
     position: fixed;
     top: 0;
@@ -36,10 +37,9 @@
     text-shadow: 
         0 0 6px #ffffff;
     font-size: 2.3rem;
-    font-family: "Orbitron";
 }
 .gameform input {
-    color: rgb(255, 255, 255);
+    color: var(--formTextColor);
     background-color: rgb(0, 0, 0);
     font-family: "Orbitron";
     text-align: center;
@@ -58,16 +58,15 @@
     padding: 0;
     margin: 0;
     text-align: center;
-    color: #ffffff;
+    color: var(--formTextColor);
     text-shadow: 
-        0 0 6px #ffffff;
+        0 0 6px var(--formTextColor);
     font-size: 2rem;
-    font-family: "Orbitron";
 }
 .gameform .gamemenu button {
-    color: #ffffff;
+    color: var(--formTextColor);
     text-shadow: 
-        0 0 6px #ffffff;
+        0 0 6px var(--formTextColor);
     font-size: 3rem;
     font-family: "Orbitron";
     padding: 0;
@@ -79,16 +78,15 @@
 .gameform .gamemenu button:hover {
     cursor: pointer;
     transform: scale(1.05);
-    color: rgb(255, 0, 0);
+    color: var(--formTextHighlightColor);
     text-shadow: 
-        0 0 6px rgb(255, 0, 0);
+        0 0 6px var(--formTextHighlightColor);
 }
 #gamecode {
     margin: 0;
     padding: 0;
-    font-family: "Orbitron";
     font-size: 2rem;
-    color: rgb(255, 0, 0);
+    color: var(--formTextHighlightColor);
     text-shadow: 
-        0 0 6px rgb(255, 0, 0);
+        0 0 6px var(--formTextHighlightColor);
 }

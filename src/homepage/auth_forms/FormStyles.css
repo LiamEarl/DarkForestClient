@@ -1,3 +1,4 @@
+@import '../../index.css';
 .authform {
     position: fixed;
     top: 0;
@@ -11,7 +12,6 @@
     z-index: 1000;
 }
 .authform form {
-    font-family: "Orbitron";
     background: linear-gradient(35deg, #b60a0a, #000000);
     padding: 2rem;
     border-radius: 0.5rem;
@@ -21,17 +21,16 @@
     border: none;
 }
 .authform h1 {
-    color: #ffffff;
+    color: var(--formTextColor);
     text-shadow: 
-        0 0 4px #ffffff;
-    font-family: "Orbitron";
+        0 0 4px var(--formTextColor);
     text-align: center;
     padding: 0;
     margin: 0;
     margin-bottom: 1vh;
 }
 .authform form input {
-    color: rgb(255, 255, 255);
+    color: var(--formTextColor);
     background-color: rgb(0, 0, 0);
     font-family: "Orbitron";
     text-align: center;
@@ -44,10 +43,9 @@
     color: rgb(212, 193, 193);
 }
 .authform form label {
-    color: #ff0000;
+    color: var(--formTextHighlightColor);
     text-shadow: 
-        0 0 3px #ff0000;
-    font-family: "Orbitron";
+        0 0 3px var(--formTextHighlightColor);
     text-align: center;
     padding: 0;
     margin: 0;
@@ -59,9 +57,9 @@
 }
 .authform button {
     font-size: 1.4rem;
-    color: #ffffff;
+    color: var(--formTextColor);
     text-shadow: 
-        0 0 3px #ffffff;
+        0 0 3px var(--formTextColor);
     background-color: transparent;
     font-family: "Orbitron";
     border: none;

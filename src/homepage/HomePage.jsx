@@ -1,19 +1,20 @@
 import "./HomePage.css";
 import { useState, useEffect } from 'react';
-import { useUser } from "../contexts/UserContext";
-import Menu1 from '../assets/websiteAssets/Menu1.jpg';
-import Menu2 from '../assets/websiteAssets/Menu2.jpg';
-import Menu3 from '../assets/websiteAssets/Menu3.jpg';
-import Menu4 from '../assets/websiteAssets/Menu4.jpg';
-import Menu5 from '../assets/websiteAssets/Menu5.jpg';
-import Menu6 from '../assets/websiteAssets/Menu6.jpg';
-import Menu7 from '../assets/websiteAssets/Menu7.jpg';
-import LoggedOut from '../assets/websiteAssets/LoggedOut.png';
-import LoggedIn from '../assets/websiteAssets/LoggedIn.png';
+import { useUser } from "~/contexts/UserContext";
+import Menu1 from '~/assets/websiteAssets/Menu1.jpg';
+import Menu2 from '~/assets/websiteAssets/Menu2.jpg';
+import Menu3 from '~/assets/websiteAssets/Menu3.jpg';
+import Menu4 from '~/assets/websiteAssets/Menu4.jpg';
+import Menu5 from '~/assets/websiteAssets/Menu5.jpg';
+import Menu6 from '~/assets/websiteAssets/Menu6.jpg';
+import Menu7 from '~/assets/websiteAssets/Menu7.jpg';
+import LoggedOut from '~/assets/websiteAssets/LoggedOut.png';
+import LoggedIn from '~/assets/websiteAssets/LoggedIn.png';
 import LogInMenu from "./auth_forms/LogInMenu";
 import RegisterMenu from "./auth_forms/RegisterMenu";
 import CreateGameMenu from "./game_forms/CreateGameMenu";
 import JoinGameMenu from "./game_forms/JoinGameMenu";
+import AppServerDetails from "~/assets/AppServerDetails.json" with {type: "json"};
 
 function HomePage() {
     const {user, setUser} = useUser();
@@ -46,7 +47,7 @@ function HomePage() {
 
     const getLoggedInStatus = async (e) => {
         try {
-            const response = await fetch("https://localhost:8888/api/users/findme", {
+            const response = await fetch(AppServerDetails.https_url.concat("/api/users/findme"), {
                 method: "GET",
                 credentials: "include"
             });

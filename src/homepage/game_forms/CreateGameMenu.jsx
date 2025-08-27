@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import "./GameFormStyle.css";
-import { useWebSocket } from "../../contexts/WebSocketContext";
-import WebSocketWrapper from "../../WebSocket";
-import { useUser } from "../../contexts/UserContext";
+import { useWebSocket } from "~/contexts/WebSocketContext";
+import WebSocketWrapper from "~/WebSocket";
+import { useUser } from "~/contexts/UserContext";
+import AppServerDetails from "~/assets/AppServerDetails.json" with {type: "json"};
 
 function CreateGameMenu({isOpen, onClose}) {
+    let navigate = useNavigate();
     const {webSocket, setWebSocket} = useWebSocket();
     const [userList, setUserList] = useState([]);
     const [gameCode, setGameCode] = useState("");
@@ -19,6 +22,10 @@ function CreateGameMenu({isOpen, onClose}) {
         return code;
     };
 
+    function startGame(ws) {
+        ws.send(`/app/startGame/${gameCode}`);
+    }
+
     useEffect(() => {
         setGameCode(generateCode(7));
     }, []);
@@ -31,13 +38,18 @@ function CreateGameMenu({isOpen, onClose}) {
             setWebSocket(null);
         }
 
-        const ws = new WebSocketWrapper("wss://localhost:8888/ws");
+        const ws = new WebSocketWrapper(AppServerDetails.wss_url.concat("/ws"));
 
         ws.connect(() => {
             setUserList([user.username]);
             ws.subscribe(`/topic/lobby/${gameCode}`, (msg) => {
                 setUserList([]);
-                setUserList(msg.players.map(player => player.username));
+                setUserList(msg.players.map(player => player));
+
+                if(msg.started) {
+                    onClose();
+                    navigate("/game");
+                }
             });
             ws.send(`/app/createGame/${gameCode}`);
         });
@@ -69,7 +81,8 @@ function CreateGameMenu({isOpen, onClose}) {
                 onClose();
             }}>Exit</button>
             <button onClick={() => {
-                onClose();
+                if(!webSocket) return;
+                startGame(webSocket);
             }}>Start</button>
             </div>
         </div>

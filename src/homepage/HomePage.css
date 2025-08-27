@@ -1,10 +1,11 @@
+@import '../index.css';
+
 .homepage {
     width: 100vw;
     height: 100vh;
     background-image: url("../assets/websiteAssets/SpaceTerminal.webp");
     background-size: cover;
     background-position: center;
-    
 }
 #title {
     color: #fd0000;
@@ -14,7 +15,6 @@
     margin: 0;
     text-align: center;
     font-size: 5rem;
-    font-family: "Orbitron";
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -28,12 +28,10 @@
     position: absolute;
     top: 3vh;
     left: 1vw;
-    font-family: "Orbitron";
     font-size: 1.3rem;
     color: rgb(255, 255, 255);
 }
 #comment {  
-    font-family: "Orbitron";
     text-shadow: 
         0 0 3px #fd0000;
     text-align: center;
@@ -79,18 +77,18 @@
 #accountstatus {
     text-align: center;
     font-weight: 600;
-    font-family: Orbitron;
     font-size: 1.5rem;
-    color: rgb(0, 202, 0);
+    color: var(--monitorTextColor);
 }
 
 .account button:hover {
     cursor: pointer;
     transform: scale(1.05);
-    color: rgb(0, 255, 0);
+    color: var(--monitorTextColor);
 }
 .account .displayedname {
-    color: rgb(0, 255, 0);
+    color: var(--monitorTextColor);
+    font-size: 1.7rem;
 }
 
 .mainmenu button {

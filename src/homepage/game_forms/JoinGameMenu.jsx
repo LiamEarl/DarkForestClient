@@ -1,31 +1,54 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import "./GameFormStyle.css";
 import { useWebSocket } from "../../contexts/WebSocketContext";
 import WebSocketWrapper from "../../WebSocket";
+import AppServerDetails from "~/assets/AppServerDetails.json" with {type: "json"};
+import { useUser } from "~/contexts/UserContext";
+
 function JoinGameMenu({isOpen, onClose}) {
+    let navigate = useNavigate();
     const {webSocket, setWebSocket} = useWebSocket();
     const [userList, setUserList] = useState([]);
-    var [gameCode, setGameCode] = useState("");
+    const [gameCode, setGameCode] = useState("");
+    const {user, setUser} = useUser();
 
     const joinGame = () => {
         if(gameCode.length != 7) return;
-    
-        const ws = new WebSocketWrapper("wss://localhost:8888/ws");
+        if(webSocket) {
+            webSocket.disconnect();
+            setWebSocket(null);
+        }
+        const ws = new WebSocketWrapper(AppServerDetails.wss_url.concat("/ws"));
 
         ws.connect(() => {
-            
             ws.subscribe(`/topic/lobby/${gameCode}`, (msg) => {
-                setUserList(msg.map(user => user.username));
+                setUserList([]);
+                setUserList(msg.players.map(player => player));
+
+                if(msg.started) {
+                    onClose();
+                    navigate("/game");
+                }
             });
             ws.send(`/app/joinGame/${gameCode}`, null);
         });
         setWebSocket(ws);
-    }
+    };
 
     const handleChange = (e) => {
         setGameCode(e.target.value.toUpperCase());
     };
 
+    useEffect(() => {
+        if(!user) return;
+
+        if(userList.length == 0) {
+            console.log(userList.length);
+            
+            setUserList([user.username]);
+        }
+    }, [userList, user]);
     
 
     if(!isOpen) return null;
